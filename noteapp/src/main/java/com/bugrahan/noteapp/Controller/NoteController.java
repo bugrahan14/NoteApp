@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-@RestController
+import org.springframework.stereotype.Controller;
+
 @RequestMapping("/notes")
+@Controller
 public class NoteController {
 
     private NoteService noteService;
