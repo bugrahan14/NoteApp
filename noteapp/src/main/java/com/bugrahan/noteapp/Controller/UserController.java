@@ -5,6 +5,7 @@ import com.bugrahan.noteapp.Service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Users> createUser(@RequestBody Users user) {
+    public ResponseEntity<Users> createUser(@Valid @RequestBody Users user) {
         Users saved = userService.saveUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }

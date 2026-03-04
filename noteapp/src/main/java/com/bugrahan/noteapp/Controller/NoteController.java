@@ -5,13 +5,14 @@ import com.bugrahan.noteapp.Service.NoteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @RequestMapping("/notes")
-@Controller
+@RestController
 public class NoteController {
 
     private NoteService noteService;
@@ -37,7 +38,7 @@ public class NoteController {
     }
 
     @PostMapping
-    public ResponseEntity<Notes> createNote(@RequestBody Notes note) {
+    public ResponseEntity<Notes> createNote(@Valid @RequestBody Notes note) {
         Notes saved = noteService.saveNote(note);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
