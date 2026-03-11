@@ -3,9 +3,7 @@ package com.bugrahan.noteapp.Exception;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Validasyon hatalarını API yanıtında döndürmek için kullanılır.
- */
+
 public class ValidationErrorResponse {
 
     private String message;
@@ -34,7 +32,7 @@ public class ValidationErrorResponse {
     public void setErrors(List<FieldError> errors) {
         this.errors = errors;
     }
-
+// ************************************************************************************
     public static class FieldError {
         private String field;
         private String message;
@@ -52,4 +50,5 @@ public class ValidationErrorResponse {
             return message;
         }
     }
+// ************************************************************************************
 }

@@ -23,7 +23,7 @@ public class Notes {
     @Column(name="content")
     private String content;
 
-    @NotNull(message = "Not bir kullanıcıya ait olmalıdır")
+    @NotNull(message = "Not bir kullanıcıya ait olmalıdır / users bilgisi boş olamaz")
     @ManyToOne
     @JoinColumn(name="user_id")
     private Users users;

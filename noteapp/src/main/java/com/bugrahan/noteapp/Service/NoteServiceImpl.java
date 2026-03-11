@@ -5,14 +5,10 @@ import com.bugrahan.noteapp.Repository.NoteRepository;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
-import java.util.Optional;
-
-
-import javax.naming.spi.DirStateFactory.Result;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -40,22 +36,8 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public Notes getNoteById(Long id) {
-
-        Optional<Notes> note = noteRepository.findById(id);
-
-        Notes notes = null ;
-
-        if (note.isPresent()) {
-            notes =  note.get();
-       
-    }
-
-    else {
-
-        throw new RuntimeException("Note not found");
-    }
-
-    return notes;
+        return noteRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Note not found"));
     }
 
     @Override

@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.stream.Collectors;
 
-/**
- * Tüm controller'larda oluşan validasyon ve diğer hataları tek yerden yönetir.
- */
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -18,8 +16,16 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ValidationErrorResponse> handleValidationHatalari(MethodArgumentNotValidException ex) {
         ValidationErrorResponse response = new ValidationErrorResponse("Validasyon hatası");
 
-        ex.getBindingResult().getFieldErrors().forEach(fieldError ->
-                response.addError(fieldError.getField(), fieldError.getDefaultMessage()));
+     
+
+        ex.getBindingResult().getFieldErrors().forEach(fieldError ->{
+            // Console çıktısı
+            System.out.println("Hatalı field: " + fieldError.getField());
+            System.out.println("Hata mesajı: " + fieldError.getDefaultMessage());
+            
+                response.addError(fieldError.getField(), fieldError.getDefaultMessage());
+            });
+
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }

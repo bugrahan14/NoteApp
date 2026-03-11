@@ -1,5 +1,7 @@
 package com.bugrahan.noteapp.Entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -14,6 +16,7 @@ public class Users {
     @Column(name="id")
     private Long id ;
 
+    
     @NotBlank(message = "Kullanıcı adı boş olamaz")
     @Size(min = 2, max = 50, message = "Kullanıcı adı 2-50 karakter arasında olmalıdır")
     @Column(name="username")
@@ -22,6 +25,7 @@ public class Users {
     @NotBlank(message = "Şifre boş olamaz")
     @Size(min = 6, max = 100, message = "Şifre en az 6 karakter olmalıdır")
     @Column(name="password")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @NotBlank(message = "E-posta boş olamaz")
